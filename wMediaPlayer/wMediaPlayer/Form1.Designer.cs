@@ -41,9 +41,11 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_Play = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.xWMP = new AxWMPLib.AxWindowsMediaPlayer();
+            this.lbl_playlistName = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -52,8 +54,6 @@
             this.btn_prev = new System.Windows.Forms.Button();
             this.btn_next = new System.Windows.Forms.Button();
             this.btn_mute = new System.Windows.Forms.Button();
-            this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lbl_playlistName = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -122,7 +122,7 @@
             // 
             this.playlistToolStripMenuItem1.Name = "playlistToolStripMenuItem1";
             this.playlistToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.playlistToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.playlistToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
             this.playlistToolStripMenuItem1.Text = "Playlist";
             // 
             // playlistToolStripMenuItem
@@ -167,6 +167,13 @@
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
+            // renameToolStripMenuItem
+            // 
+            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
+            this.renameToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.renameToolStripMenuItem.Text = "Rename";
+            // 
             // btn_Play
             // 
             this.btn_Play.Location = new System.Drawing.Point(12, 329);
@@ -203,6 +210,18 @@
             this.xWMP.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("xWMP.OcxState")));
             this.xWMP.Size = new System.Drawing.Size(507, 263);
             this.xWMP.TabIndex = 0;
+            // 
+            // lbl_playlistName
+            // 
+            this.lbl_playlistName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_playlistName.AutoSize = true;
+            this.lbl_playlistName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_playlistName.Location = new System.Drawing.Point(3, 4);
+            this.lbl_playlistName.Name = "lbl_playlistName";
+            this.lbl_playlistName.Size = new System.Drawing.Size(105, 20);
+            this.lbl_playlistName.TabIndex = 1;
+            this.lbl_playlistName.Text = "Play list name";
             // 
             // listView1
             // 
@@ -269,25 +288,6 @@
             this.btn_mute.UseVisualStyleBackColor = true;
             this.btn_mute.Click += new System.EventHandler(this.btn_mute_Click);
             // 
-            // renameToolStripMenuItem
-            // 
-            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.renameToolStripMenuItem.Text = "Rename";
-            // 
-            // lbl_playlistName
-            // 
-            this.lbl_playlistName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbl_playlistName.AutoSize = true;
-            this.lbl_playlistName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_playlistName.Location = new System.Drawing.Point(3, 4);
-            this.lbl_playlistName.Name = "lbl_playlistName";
-            this.lbl_playlistName.Size = new System.Drawing.Size(105, 20);
-            this.lbl_playlistName.TabIndex = 1;
-            this.lbl_playlistName.Text = "Play list name";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,6 +303,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);

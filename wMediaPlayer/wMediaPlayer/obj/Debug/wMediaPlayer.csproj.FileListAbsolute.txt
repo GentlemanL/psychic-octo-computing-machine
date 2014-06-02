@@ -13,3 +13,18 @@ E:\Skola\pb069\media player\wMediaPlayer\wMediaPlayer\bin\Debug\AxInterop.WMPLib
 E:\Skola\pb069\media player\wMediaPlayer\wMediaPlayer\obj\Debug\wMediaPlayer.exe
 E:\Skola\pb069\media player\wMediaPlayer\wMediaPlayer\obj\Debug\wMediaPlayer.pdb
 E:\Skola\pb069\media player\wMediaPlayer\wMediaPlayer\obj\Debug\wMediaPlayer.NewPlaylist.resources
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\bin\Debug\wMediaPlayer.exe.config
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\obj\Debug\Interop.WMPLib.dll
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\obj\Debug\AxInterop.WMPLib.dll
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\obj\Debug\wMediaPlayer.csproj.ResolveComReference.cache
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\obj\Debug\wMediaPlayer.exe
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\obj\Debug\wMediaPlayer.pdb
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\obj\Debug\wMediaPlayer.csprojResolveAssemblyReference.cache
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\obj\Debug\wMediaPlayer.Form1.resources
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\obj\Debug\wMediaPlayer.NewPlaylist.resources
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\obj\Debug\wMediaPlayer.Properties.Resources.resources
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\obj\Debug\wMediaPlayer.csproj.GenerateResource.Cache
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\bin\Debug\wMediaPlayer.exe
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\bin\Debug\wMediaPlayer.pdb
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\bin\Debug\Interop.WMPLib.dll
+E:\Skola\C#\pokus\wMediaPlayer\wMediaPlayer\bin\Debug\AxInterop.WMPLib.dll

@@ -18,6 +18,7 @@ namespace wMediaPlayer
         public DataSet1 dataset;
         public TimeSpan? TotalDuration;
         private string path;
+        private PlayListManager manager;
 
         private string currentPlayList;
 
@@ -36,8 +37,8 @@ namespace wMediaPlayer
         {
             InitializeComponent();
 
-
             dataset = new DataSet1();
+
             try
             {
                 dataset.ReadXml("Playlists.xml");
@@ -112,7 +113,15 @@ namespace wMediaPlayer
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            xWMP.playlistCollection.newPlaylist
+            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            manager = new PlayListManager(dataset);
+            CurrentPlayList = "";
+
+            //List<string> playlists = manager
         }
 
 

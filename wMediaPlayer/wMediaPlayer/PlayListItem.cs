@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace wMediaPlayer
 {
     class PlayListItem
     {
+        private string songName;
+
         public PlayListItem() { }
 
         private string Name { get; set; }
@@ -19,6 +22,13 @@ namespace wMediaPlayer
             Name = name;
             Path = path;
             Duration = duration;
+        }
+
+        public PlayListItem(string songName, string path, TimeSpan? duration)
+        {
+            this.songName = songName;
+            this.Path = path;
+            this.Duration = duration;
         }
 
         //public TimeSpan DurationString()

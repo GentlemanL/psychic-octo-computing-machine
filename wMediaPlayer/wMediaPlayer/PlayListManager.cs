@@ -30,6 +30,91 @@ namespace wMediaPlayer
             dataset.Playlist.AddPlaylistRow(plRow);
         }
 
-        //public List<palylistitem>
+        public static PlayListItem CreateItem(string songName, string path)
+        {
+            TimeSpan? duration = null;
+            if (!string.IsNullOrWhiteSpace(path) && System.IO.File.Exists(path))
+            {
+                // mozno pouzit TagLib
+                WindowsMediaPlayerClass wmp = new WindowsMediaPlayerClass();
+                IWMPMedia newFile = wmp.newMedia(path);
+                duration = TimeSpan.FromHours(newFile.duration);
+            }
+            return new PlayListItem(songName, path, duration);
+        }
+
+        public List<PlayListItem> LoadPlaylist(string name)
+        {
+            var result =
+                dataset.Song.Select(@"PlaylistName = '" + name + "'")
+                       .Select(row =>
+                       {
+                           return CreateItem(row.Field<string>("SongName"), row.Field<string>("URL"));
+                       });
+            return result.ToList();
+        }
+
+        public List<string> LoadPlaylists()
+        {
+            return dataset.Playlist
+                          .Cast<DataSet1.PlaylistRow>()
+                          .Select(t => t.PlaylistName)
+                          .ToList();
+        }
+
+        public void AddSongsToPlayList(Dictionary<string, string> nameUrlPair, string playlistName)
+        {
+            foreach (string song in nameUrlPair.Keys)
+            {
+                dataset.Song.AddSongRow(nameUrlPair[song], song, playlistName);
+            }
+        }
+
+        public void DeleteSong(string name)
+        {
+            for (int i = dataset.Song.Rows.Count - 1; i >= 0; i--)
+            {
+                if (dataset.Song.Rows[i]["SongName"].ToString() == name)
+                {
+                    dataset.Song.Rows[i].Delete();
+                }
+            }
+        }
+
+        public void DeletePlaylist(string playlistName)
+        {
+            DataRow[] rows = dataset.Song.Select("PlaylistName = '" + playlistName + "'");
+
+            foreach (DataRow row in rows)
+            {
+                row.Delete();
+            }
+
+            for (int i = dataset.Playlist.Rows.Count - 1; i >= 0; i--)
+            {
+                if (dataset.Playlist.Rows[i]["PlaylistName"].ToString() == playlistName)
+                {
+                    dataset.Playlist.Rows[i].Delete();
+                }
+            }
+        }
+
+        public void RenamePlaylist(string oldPlaylist, string newPlaylist)
+        {
+            DataRow[] rows = dataset.Song.Select("PlaylistName = '" + oldPlaylist + "'");
+
+            foreach (DataRow row in rows)
+            {
+                row["PlaylistName"] = newPlaylist;
+            }
+
+            for (int i = dataset.Playlist.Rows.Count - 1; i >= 0; i--)
+            {
+                if (dataset.Playlist.Rows[i]["PlaylistName"].ToString() == oldPlaylist)
+                {
+                    dataset.Playlist.Rows[i]["PlaylistName"] = newPlaylist;
+                }
+            }
+        }
     }
 }

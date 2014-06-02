@@ -12,7 +12,7 @@
   <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Playlist" msprop:Generator_TableClassName="PlaylistDataTable" msprop:Generator_TableVarName="tablePlaylist" msprop:Generator_RowChangedName="PlaylistRowChanged" msprop:Generator_TablePropName="Playlist" msprop:Generator_RowDeletingName="PlaylistRowDeleting" msprop:Generator_RowChangingName="PlaylistRowChanging" msprop:Generator_RowEvHandlerName="PlaylistRowChangeEventHandler" msprop:Generator_RowDeletedName="PlaylistRowDeleted" msprop:Generator_RowClassName="PlaylistRow" msprop:Generator_UserTableName="Playlist" msprop:Generator_RowEvArgName="PlaylistRowChangeEvent">
+        <xs:element name="Playlist" msprop:Generator_TableClassName="PlaylistDataTable" msprop:Generator_TableVarName="tablePlaylist" msprop:Generator_TablePropName="Playlist" msprop:Generator_RowDeletingName="PlaylistRowDeleting" msprop:Generator_RowChangingName="PlaylistRowChanging" msprop:Generator_RowEvHandlerName="PlaylistRowChangeEventHandler" msprop:Generator_RowDeletedName="PlaylistRowDeleted" msprop:Generator_UserTableName="Playlist" msprop:Generator_RowChangedName="PlaylistRowChanged" msprop:Generator_RowEvArgName="PlaylistRowChangeEvent" msprop:Generator_RowClassName="PlaylistRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PlaylistName" msprop:Generator_ColumnVarNameInTable="columnPlaylistName" msprop:Generator_ColumnPropNameInRow="PlaylistName" msprop:Generator_ColumnPropNameInTable="PlaylistNameColumn" msprop:Generator_UserColumnName="PlaylistName" type="xs:string" minOccurs="0" />
@@ -20,7 +20,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Song" msprop:Generator_TableClassName="SongDataTable" msprop:Generator_TableVarName="tableSong" msprop:Generator_RowChangedName="SongRowChanged" msprop:Generator_TablePropName="Song" msprop:Generator_RowDeletingName="SongRowDeleting" msprop:Generator_RowChangingName="SongRowChanging" msprop:Generator_RowEvHandlerName="SongRowChangeEventHandler" msprop:Generator_RowDeletedName="SongRowDeleted" msprop:Generator_RowClassName="SongRow" msprop:Generator_UserTableName="Song" msprop:Generator_RowEvArgName="SongRowChangeEvent">
+        <xs:element name="Song" msprop:Generator_TableClassName="SongDataTable" msprop:Generator_TableVarName="tableSong" msprop:Generator_TablePropName="Song" msprop:Generator_RowDeletingName="SongRowDeleting" msprop:Generator_RowChangingName="SongRowChanging" msprop:Generator_RowEvHandlerName="SongRowChangeEventHandler" msprop:Generator_RowDeletedName="SongRowDeleted" msprop:Generator_UserTableName="Song" msprop:Generator_RowChangedName="SongRowChanged" msprop:Generator_RowEvArgName="SongRowChangeEvent" msprop:Generator_RowClassName="SongRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SongName" msprop:Generator_ColumnVarNameInTable="columnSongName" msprop:Generator_ColumnPropNameInRow="SongName" msprop:Generator_ColumnPropNameInTable="SongNameColumn" msprop:Generator_UserColumnName="SongName" type="xs:string" minOccurs="0" />
