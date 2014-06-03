@@ -15,8 +15,8 @@ namespace wMediaPlayer
 {
     class PlayListManager
     {
-        private DataSet1 dataset;
-        AxWMPLib.AxWindowsMediaPlayer Player;
+        public DataSet1 dataset;
+        //AxWMPLib.AxWindowsMediaPlayer Player;
 
         public PlayListManager(DataSet1 dataset)
         {
@@ -36,8 +36,8 @@ namespace wMediaPlayer
             if (!string.IsNullOrWhiteSpace(path) && System.IO.File.Exists(path))
             {
                 // mozno pouzit TagLib
-                WindowsMediaPlayerClass wmp = new WindowsMediaPlayerClass();
-                IWMPMedia newFile = wmp.newMedia(path);
+                WindowsMediaPlayerClass wmpc = new WindowsMediaPlayerClass();
+                IWMPMedia newFile = wmpc.newMedia(path);
                 duration = TimeSpan.FromHours(newFile.duration);
             }
             return new PlayListItem(songName, path, duration);
@@ -49,7 +49,7 @@ namespace wMediaPlayer
                 dataset.Song.Select(@"PlaylistName = '" + name + "'")
                        .Select(row =>
                        {
-                           return CreateItem(row.Field<string>("SongName"), row.Field<string>("URL"));
+                           return CreateItem(row.Field<string>("SongName"), row.Field<string>("Path"));
                        });
             return result.ToList();
         }
@@ -101,12 +101,12 @@ namespace wMediaPlayer
 
         public void RenamePlaylist(string oldPlaylist, string newPlaylist)
         {
-            DataRow[] rows = dataset.Song.Select("PlaylistName = '" + oldPlaylist + "'");
+            //DataRow[] rows = dataset.Song.Select("PlaylistName = '" + oldPlaylist + "'");
 
-            foreach (DataRow row in rows)
-            {
-                row["PlaylistName"] = newPlaylist;
-            }
+            //foreach (DataRow row in rows)
+            //{
+            //    row["PlaylistName"] = newPlaylist;
+            //}
 
             for (int i = dataset.Playlist.Rows.Count - 1; i >= 0; i--)
             {

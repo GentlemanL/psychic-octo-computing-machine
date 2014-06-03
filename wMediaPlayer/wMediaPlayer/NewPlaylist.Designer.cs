@@ -49,6 +49,7 @@
             this.btn_np_ok.TabIndex = 1;
             this.btn_np_ok.Text = "OK";
             this.btn_np_ok.UseVisualStyleBackColor = true;
+            this.btn_np_ok.Click += new System.EventHandler(this.btn_np_ok_Click);
             // 
             // label1
             // 
@@ -67,6 +68,7 @@
             this.btn_np_cancel.TabIndex = 3;
             this.btn_np_cancel.Text = "Cancel";
             this.btn_np_cancel.UseVisualStyleBackColor = true;
+            this.btn_np_cancel.Click += new System.EventHandler(this.btn_np_cancel_Click);
             // 
             // NewPlaylist
             // 
