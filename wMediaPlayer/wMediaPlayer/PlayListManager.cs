@@ -38,7 +38,8 @@ namespace wMediaPlayer
                 // mozno pouzit TagLib
                 WindowsMediaPlayerClass wmpc = new WindowsMediaPlayerClass();
                 IWMPMedia newFile = wmpc.newMedia(path);
-                duration = TimeSpan.FromHours(newFile.duration);
+                duration = TimeSpan.Parse(newFile.durationString.Length > 5 ? newFile.durationString : "00:" + newFile.durationString);
+
             }
             return new PlayListItem(songName, path, duration);
         }
@@ -52,6 +53,14 @@ namespace wMediaPlayer
                            return CreateItem(row.Field<string>("SongName"), row.Field<string>("Path"));
                        });
             return result.ToList();
+
+            //List<PlayListItem> result =
+            //    dataset.Song.Select(@"PlaylistName = '" + name + "'")
+            //           .Select(row =>
+            //           {
+            //               return CreateItem(row.Field<string>("SongName"), row.Field<string>("Path"));
+            //           }).ToList(); ;
+            //return result;
         }
 
         public List<string> LoadPlaylists()

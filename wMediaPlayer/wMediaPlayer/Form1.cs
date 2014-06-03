@@ -21,20 +21,21 @@ namespace wMediaPlayer
         private string path;
         public bool newPlaylistCreated { get; set; }
         private PlayListManager manager;
+        //public IWMPPlaylist defaultPlaylist;
 
         private string currentPlayList;
 
         public string CurrentPlayList
         {
             get { return currentPlayList; }
-            set 
-            { 
+            set
+            {
                 currentPlayList = value;
                 lbl_playlistName.Text = currentPlayList;
             }
         }
 
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -67,9 +68,11 @@ namespace wMediaPlayer
             return menuItem;
         }
 
-        public void addItemToListView(string name, string duration)
+        public void addItemToListView(string name, string duration, string path)
         {
-            listView1.Items.Add(name).SubItems.Add(duration);
+            string[] sub = new string[3] { name, duration, path };
+            ListViewItem lvi = new ListViewItem(sub);
+            listView1.Items.Add(lvi);
         }
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -86,7 +89,7 @@ namespace wMediaPlayer
                     xWMP.URL = path;
 
                     listView1.Items.Clear();
-                    addItemToListView(songName, lbl_totalDuration.Text = media.durationString);
+                    addItemToListView(songName, lbl_totalDuration.Text = media.durationString, path);
                 }
             }
             catch (ArgumentException ex)
@@ -99,9 +102,60 @@ namespace wMediaPlayer
             }
         }
 
+
+        string totalD;
+        //add song to current playlist
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(CurrentPlayList))
+            {
+                MessageBox.Show("Select playlist first!");
+            }
+            else
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = "Media Files|*.mpg;*.avi;*.wma;*.mov;" + "*.wav;*.mp2;*.mp3|All Files|*.*";
+                try
+                {
+                    Dictionary<string, string> dsfsd = new Dictionary<string, string>();
+                    List<PlayListItem> items = new List<PlayListItem>();
+                    if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        string songName = Path.GetFileName(ofd.FileName);
+                        path = ofd.FileName;
+                        IWMPMedia media = xWMP.newMedia(path);
+                        xWMP.URL = path;
 
+                        //defaultPlaylist.appendItem(media);
+                        PlayListItem item = PlayListManager.CreateItem(songName, path);
+                        items.Add(item);
+                        totalD = media.durationString;
+                        if (totalD.Length < 6)
+                        {
+                            totalD = "00:" + totalD;
+                        }
+                        TotalDuration += TimeSpan.Parse(totalD);
+                        lbl_totalDuration.Text = TotalDuration.ToString();
+                        addItemToListView(songName, media.durationString, path);
+
+                        dsfsd.Add(path, songName);
+                        manager.AddSongsToPlayList(dsfsd, CurrentPlayList);
+                    }
+
+                   // Dictionary<string, string> nameUrlPair = items.ToDictionary(t => t.Path, t => t.Name);
+                    
+                    
+                    //manager.AddSongsToPlayList(nameUrlPair, CurrentPlayList);
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void playlistToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -200,13 +254,18 @@ namespace wMediaPlayer
 
             manager = new PlayListManager(dataset);
             List<string> playlists = manager.LoadPlaylists();
+
             openToolStripMenuItem.DropDownItems.Clear();
             foreach (var item in playlists.OrderBy(playlistName => playlistName))
             {
                 ToolStripMenuItem tsmi = CreateOpenMenuItem(item);
                 openToolStripMenuItem.DropDownItems.Add(tsmi);
             }
+
+            //defaultPlaylist = xWMP.playlistCollection.newPlaylist("Default playlist");
+            //CurrentPlayList = defaultPlaylist.name;
         }
+
         private void LoadPlayList(string playlistName)
         {
             IWMPPlaylist pl = xWMP.playlistCollection.newPlaylist(playlistName);
@@ -219,10 +278,11 @@ namespace wMediaPlayer
 
             foreach (PlayListItem item in playlistItems)
             {
-                addItemToListView(item.Name, item.Duration.ToString());
+                addItemToListView(item.Name, item.Duration.ToString(), item.Path);
                 IWMPMedia media = xWMP.newMedia(item.Path);
                 pl.appendItem(media);
                 TotalDuration += item.Duration;
+                lbl_totalDuration.Text = TotalDuration.ToString();
             }
 
             xWMP.currentPlaylist = pl;
@@ -232,6 +292,60 @@ namespace wMediaPlayer
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             dataset.WriteXml("Playlists.xml");
+        }
+
+        private void deleteSongToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            ListViewItem item = listView1.SelectedItems[0];
+            //string[] duration = item.SubItems[1].Text.Split(':');
+            TimeSpan? timeSpan = null;
+
+
+            //if (duration.Length == 3)
+            //{
+            //    timeSpan = new TimeSpan(Convert.ToInt32(duration[0]), Convert.ToInt32(duration[1]), Convert.ToInt32(duration[2]));
+            //}
+            //else
+            //{
+            //    timeSpan = new TimeSpan(0, Convert.ToInt32(duration[0]), Convert.ToInt32(duration[1]));
+            //}
+
+            //PlayListItem selectedSong = new PlayListItem(item.SubItems[0].Text, item.SubItems[2].Text, timeSpan);
+
+            //if (selectedSong == null)
+            //    return;
+
+            PlayListItem plItem = new PlayListItem(item.SubItems[0].Text,
+                                                    item.SubItems[2].Text,
+                                                    TimeSpan.Parse(item.SubItems[1].Text));
+            if (plItem == null) return;
+
+            try
+            {
+                IWMPPlaylist playlist = xWMP.playlistCollection.getByName(CurrentPlayList).Item(0);
+
+                for (int i = 0; i < playlist.count; i++)
+                {
+                    bool isSameUrl = string.Equals(playlist.Item[i].sourceURL, plItem.Path, StringComparison.InvariantCultureIgnoreCase);
+                    if (!isSameUrl)
+                        continue;
+
+                    xWMP.Ctlcontrols.playItem(playlist.Item[i]);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("File not found! Delete song and add it from its new location!");
+            }
         }
     }
 }

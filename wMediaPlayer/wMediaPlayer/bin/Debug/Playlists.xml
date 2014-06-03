@@ -1,23 +1,19 @@
 <?xml version="1.0" standalone="yes"?>
 <DataSet1 xmlns="http://tempuri.org/DataSet1.xsd">
   <Playlist>
-    <PlaylistName>lukasko</PlaylistName>
-    <ID>3</ID>
+    <PlaylistName>davidko</PlaylistName>
+    <ID>1</ID>
   </Playlist>
-  <Playlist>
-    <PlaylistName>hk</PlaylistName>
-    <ID>4</ID>
-  </Playlist>
-  <Playlist>
-    <PlaylistName>jh</PlaylistName>
-    <ID>5</ID>
-  </Playlist>
-  <Playlist>
-    <PlaylistName>bb</PlaylistName>
-    <ID>6</ID>
-  </Playlist>
-  <Playlist>
-    <PlaylistName>bb</PlaylistName>
-    <ID>7</ID>
-  </Playlist>
+  <Song>
+    <SongName>01 - Tenacious D - Kickapoo.mp3</SongName>
+    <Path>E:\Hudba\2006 - The Pick of Destiny\01 - Tenacious D - Kickapoo.mp3</Path>
+    <PlaylistName>davidko</PlaylistName>
+    <ID>1</ID>
+  </Song>
+  <Song>
+    <SongName>04 - Tenacious D - Destiny.mp3</SongName>
+    <Path>E:\Hudba\2006 - The Pick of Destiny\04 - Tenacious D - Destiny.mp3</Path>
+    <PlaylistName>davidko</PlaylistName>
+    <ID>2</ID>
+  </Song>
 </DataSet1>

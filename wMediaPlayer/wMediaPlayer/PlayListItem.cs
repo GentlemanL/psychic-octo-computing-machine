@@ -25,7 +25,7 @@ namespace wMediaPlayer
 
         public PlayListItem(string songName, string path, TimeSpan? duration)
         {
-            this.songName = songName;
+            this.Name = songName;
             this.Path = path;
             this.Duration = duration;
         }

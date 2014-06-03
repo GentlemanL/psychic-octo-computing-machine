@@ -42,6 +42,7 @@
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsPlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_Play = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.xWMP = new AxWMPLib.AxWindowsMediaPlayer();
@@ -56,7 +57,8 @@
             this.btn_prev = new System.Windows.Forms.Button();
             this.btn_next = new System.Windows.Forms.Button();
             this.btn_mute = new System.Windows.Forms.Button();
-            this.saveAsPlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HiddenColumnPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -138,6 +140,7 @@
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
             this.addToolStripMenuItem,
+            this.deleteSongToolStripMenuItem,
             this.deleteToolStripMenuItem,
             this.renameToolStripMenuItem,
             this.saveAsPlToolStripMenuItem});
@@ -184,6 +187,13 @@
             this.renameToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.renameToolStripMenuItem.Text = "Rename";
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
+            // 
+            // saveAsPlToolStripMenuItem
+            // 
+            this.saveAsPlToolStripMenuItem.Name = "saveAsPlToolStripMenuItem";
+            this.saveAsPlToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveAsPlToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.saveAsPlToolStripMenuItem.Text = "Save as playlist";
             // 
             // btn_Play
             // 
@@ -260,13 +270,17 @@
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Title,
-            this.Time});
+            this.Time,
+            this.HiddenColumnPath});
             this.listView1.Location = new System.Drawing.Point(0, 27);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(417, 204);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             // 
             // Title
             // 
@@ -322,12 +336,18 @@
             this.btn_mute.UseVisualStyleBackColor = true;
             this.btn_mute.Click += new System.EventHandler(this.btn_mute_Click);
             // 
-            // saveAsPlToolStripMenuItem
+            // deleteSongToolStripMenuItem
             // 
-            this.saveAsPlToolStripMenuItem.Name = "saveAsPlToolStripMenuItem";
-            this.saveAsPlToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveAsPlToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.saveAsPlToolStripMenuItem.Text = "Save as playlist";
+            this.deleteSongToolStripMenuItem.Name = "deleteSongToolStripMenuItem";
+            this.deleteSongToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteSongToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.deleteSongToolStripMenuItem.Text = "Delete song";
+            this.deleteSongToolStripMenuItem.Click += new System.EventHandler(this.deleteSongToolStripMenuItem_Click);
+            // 
+            // HiddenColumnPath
+            // 
+            this.HiddenColumnPath.Text = "Path";
+            this.HiddenColumnPath.Width = 0;
             // 
             // Form1
             // 
@@ -390,6 +410,8 @@
         private System.Windows.Forms.Label lblwhatever;
         private System.Windows.Forms.Label lbl_totalDuration;
         private System.Windows.Forms.ToolStripMenuItem saveAsPlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSongToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader HiddenColumnPath;
 
     }
 }
