@@ -8,6 +8,10 @@
     <PlaylistName>dg</PlaylistName>
     <ID>6</ID>
   </Playlist>
+  <Playlist>
+    <PlaylistName>hk</PlaylistName>
+    <ID>7</ID>
+  </Playlist>
   <Song>
     <SongName>01 - Tenacious D - Kickapoo.mp3</SongName>
     <Path>E:\Hudba\2006 - The Pick of Destiny\01 - Tenacious D - Kickapoo.mp3</Path>
@@ -145,5 +149,53 @@
     <Path>E:\Hudba\2006 - The Pick of Destiny\05 - Tenacious D - History.mp3</Path>
     <PlaylistName>dg</PlaylistName>
     <ID>43</ID>
+  </Song>
+  <Song>
+    <SongName>06 - Tenacious D - The Government Totally Sucks.mp3</SongName>
+    <Path>E:\Hudba\2006 - The Pick of Destiny\06 - Tenacious D - The Government Totally Sucks.mp3</Path>
+    <PlaylistName>dg</PlaylistName>
+    <ID>44</ID>
+  </Song>
+  <Song>
+    <SongName>07 - Tenacious D - Master Exploder.mp3</SongName>
+    <Path>E:\Hudba\2006 - The Pick of Destiny\07 - Tenacious D - Master Exploder.mp3</Path>
+    <PlaylistName>dg</PlaylistName>
+    <ID>45</ID>
+  </Song>
+  <Song>
+    <SongName>10 - Tenacious D - Dude (I Totally Miss You).mp3</SongName>
+    <Path>E:\Hudba\2006 - The Pick of Destiny\10 - Tenacious D - Dude (I Totally Miss You).mp3</Path>
+    <PlaylistName>dg</PlaylistName>
+    <ID>46</ID>
+  </Song>
+  <Song>
+    <SongName>01 - Tenacious D - Kickapoo.mp3</SongName>
+    <Path>E:\Hudba\2006 - The Pick of Destiny\01 - Tenacious D - Kickapoo.mp3</Path>
+    <PlaylistName>hk</PlaylistName>
+    <ID>47</ID>
+  </Song>
+  <Song>
+    <SongName>02 - Tenacious D - Classico.mp3</SongName>
+    <Path>E:\Hudba\2006 - The Pick of Destiny\02 - Tenacious D - Classico.mp3</Path>
+    <PlaylistName>hk</PlaylistName>
+    <ID>48</ID>
+  </Song>
+  <Song>
+    <SongName>03 - Tenacious D - Baby.mp3</SongName>
+    <Path>E:\Hudba\2006 - The Pick of Destiny\03 - Tenacious D - Baby.mp3</Path>
+    <PlaylistName>hk</PlaylistName>
+    <ID>49</ID>
+  </Song>
+  <Song>
+    <SongName>07 - Tenacious D - Master Exploder.mp3</SongName>
+    <Path>E:\Hudba\2006 - The Pick of Destiny\07 - Tenacious D - Master Exploder.mp3</Path>
+    <PlaylistName>hk</PlaylistName>
+    <ID>50</ID>
+  </Song>
+  <Song>
+    <SongName>12 - Tenacious D - Car Chase City.mp3</SongName>
+    <Path>E:\Hudba\2006 - The Pick of Destiny\12 - Tenacious D - Car Chase City.mp3</Path>
+    <PlaylistName>hk</PlaylistName>
+    <ID>51</ID>
   </Song>
 </DataSet1>

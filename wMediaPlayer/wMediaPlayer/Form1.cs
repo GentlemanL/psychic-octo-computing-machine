@@ -115,37 +115,62 @@ namespace wMediaPlayer
             {
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.Filter = "Media Files|*.mpg;*.avi;*.wma;*.mov;" + "*.wav;*.mp2;*.mp3|All Files|*.*";
+                ofd.Multiselect = true;
+                
                 try
                 {
+                    //List<PlayListItem> items = new List<PlayListItem>();
                     Dictionary<string, string> dsfsd = new Dictionary<string, string>();
-                    List<PlayListItem> items = new List<PlayListItem>();
+                    
                     if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
-                        string songName = Path.GetFileName(ofd.FileName);
-                        path = ofd.FileName;
-                        IWMPMedia media = xWMP.newMedia(path);
-                        xWMP.URL = path;
+                        //string songName = Path.GetFileName(ofd.FileName);
+                        //path = ofd.FileName;
+                        //IWMPMedia media = xWMP.newMedia(path);
 
-                        //defaultPlaylist.appendItem(media);
-                        PlayListItem item = PlayListManager.CreateItem(songName, path);
-                        items.Add(item);
-                        totalD = media.durationString;
-                        if (totalD.Length < 6)
+                        //xWMP.URL = path;
+
+                        ////defaultPlaylist.appendItem(media);
+                        //PlayListItem item = PlayListManager.CreateItem(songName, path);
+                        //items.Add(item);
+                        //totalD = media.durationString;
+                        //if (totalD.Length < 6)
+                        //{
+                        //    totalD = "00:" + totalD;
+                        //}
+                        //TotalDuration += TimeSpan.Parse(totalD);
+                        //lbl_totalDuration.Text = TotalDuration.ToString();
+                        //addItemToListView(songName, totalD, path);
+
+                        //dsfsd.Add(path, songName);
+                        //manager.AddSongsToPlayList(dsfsd, CurrentPlayList);
+
+                        List<PlayListItem> items = new List<PlayListItem>();
+                        IWMPPlaylist playlist = xWMP.playlistCollection.getByName(CurrentPlayList).Item(0);
+                        
+                        foreach (string path in ofd.FileNames)
                         {
-                            totalD = "00:" + totalD;
+                            IWMPMedia media = xWMP.newMedia(path);
+                            //xWMP.URL = path;
+                            PlayListItem item = PlayListManager.CreateItem(Path.GetFileName(path), path);
+                            items.Add(item);
+                            playlist.appendItem(media);
+                            totalD = media.durationString;
+                            if (totalD.Length < 6)
+                            {
+                                totalD = "00:" + totalD;
+                            }
+                            TotalDuration += TimeSpan.Parse(totalD);
+                            lbl_totalDuration.Text = TotalDuration.ToString();
+
+                            addItemToListView(Path.GetFileName(path), totalD, path);
+
+                            //dsfsd.Add(path, Path.GetFileName(path));
                         }
-                        TotalDuration += TimeSpan.Parse(totalD);
-                        lbl_totalDuration.Text = TotalDuration.ToString();
-                        addItemToListView(songName, media.durationString, path);
-
-                        dsfsd.Add(path, songName);
-                        manager.AddSongsToPlayList(dsfsd, CurrentPlayList);
+                        Dictionary<string, string> nameUrlPair = items.ToDictionary(t => t.Path, t => t.Name);
+                        manager.AddSongsToPlayList(nameUrlPair, CurrentPlayList);
+                        LoadPlayList(CurrentPlayList);
                     }
-
-                   // Dictionary<string, string> nameUrlPair = items.ToDictionary(t => t.Path, t => t.Name);
-                    
-                    
-                    //manager.AddSongsToPlayList(nameUrlPair, CurrentPlayList);
                 }
                 catch (ArgumentException ex)
                 {
@@ -156,7 +181,43 @@ namespace wMediaPlayer
                     MessageBox.Show(ex.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
+            //**
+            //if (DialogResult.OK == openFileDialog2.ShowDialog())
+            //{
+            //    IWMPPlaylist playlist = axWindowsMediaPlayer1.playlistCollection.getByName(CurrentPlayListName).Item(0);
+            //    List<PlayListItem> addedItems = new List<PlayListItem>();
+            //    foreach (string url in openFileDialog2.FileNames)
+            //    {
+            //        IWMPMedia media = axWindowsMediaPlayer1.newMedia(url);
+            //        playlist.appendItem(media);
+
+            //        PlayListItem item = PlaylistWorker.CreateItem(Path.GetFileName(url), url);
+            //        addedItems.Add(item);
+            //        TotalDuration += item.Duration;
+            //        string[] row = new string[3] {
+            //                Path.GetFileName(url),
+            //                item.ReturnDurationFormat(),
+            //                url
+            //            };
+            //        ListViewItem items = new ListViewItem(row);
+            //        listView1.Items.Add(items);
+
+            //        //listBoxURLS.Items.Add(item);
+            //    }
+            //    lblTotalDuration.Text = string.Format(@"{0}", TotalDuration.Value.ToString(TotalDuration.Value.TotalMinutes >= 60 ? @"h\:mm\:ss" : @"m\:ss"));
+
+            //    Dictionary<string, string> nameUrlPair = addedItems.ToDictionary(t => t.Url, t => t.ItemName);
+            //    worker.AddSongsToPlayList(nameUrlPair, CurrentPlayListName);
+
+            //    if (IsEmptyListView)
+            //    {
+            //        axWindowsMediaPlayer1.currentPlaylist = playlist;
+            //    }
+            //}
+            //***************************
         }
+             
 
         private void playlistToolStripMenuItem1_Click(object sender, EventArgs e)
         {
