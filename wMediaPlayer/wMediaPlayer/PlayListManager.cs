@@ -110,12 +110,12 @@ namespace wMediaPlayer
 
         public void RenamePlaylist(string oldPlaylist, string newPlaylist)
         {
-            //DataRow[] rows = dataset.Song.Select("PlaylistName = '" + oldPlaylist + "'");
+            DataRow[] rows = dataset.Song.Select("PlaylistName = '" + oldPlaylist + "'");
 
-            //foreach (DataRow row in rows)
-            //{
-            //    row["PlaylistName"] = newPlaylist;
-            //}
+            foreach (DataRow row in rows)
+            {
+                row["PlaylistName"] = newPlaylist;
+            }
 
             for (int i = dataset.Playlist.Rows.Count - 1; i >= 0; i--)
             {

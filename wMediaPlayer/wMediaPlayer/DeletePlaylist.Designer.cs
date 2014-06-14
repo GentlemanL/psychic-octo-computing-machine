@@ -40,7 +40,7 @@
             this.btn_np_cancel.Name = "btn_np_cancel";
             this.btn_np_cancel.Size = new System.Drawing.Size(127, 23);
             this.btn_np_cancel.TabIndex = 7;
-            this.btn_np_cancel.Text = "Cancel";
+            this.btn_np_cancel.Text = "Close";
             this.btn_np_cancel.UseVisualStyleBackColor = true;
             this.btn_np_cancel.Click += new System.EventHandler(this.btn_np_cancel_Click);
             // 
@@ -65,6 +65,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(12, 31);
             this.comboBox1.Name = "comboBox1";
@@ -76,10 +77,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 89);
+            this.ControlBox = false;
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btn_np_cancel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_np_delete);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(300, 127);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 127);
             this.Name = "DeletePlaylist";
             this.Text = "DeletePlaylist";
             this.Load += new System.EventHandler(this.DeletePlaylist_Load);

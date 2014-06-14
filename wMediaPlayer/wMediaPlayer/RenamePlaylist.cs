@@ -65,30 +65,22 @@ namespace wMediaPlayer
             {
                 if (!String.IsNullOrEmpty(comboBox_playlists.Text))
                 {
-                    if (!comboBox_playlists.Items.Contains(comboBox_playlists.Text))
+                    if (MessageBox.Show("Are you sure you want to rename this playlist?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        MessageBox.Show("This playlist doesn't exist.");
-                        comboBox_playlists.Text = "";
-                    }
-                    else
-                    {
-                        if (MessageBox.Show("Are you sure you want to rename this playlist?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+
+                        manager.RenamePlaylist(comboBox_playlists.SelectedItem.ToString(), txtBox_newPlaylistName.Text);
+
+                        comboBox_playlists.Items.Clear();
+                        List<string> playlists = manager.LoadPlaylists();
+                        foreach (var item in playlists)
                         {
-                            
-                            manager.RenamePlaylist(comboBox_playlists.SelectedItem.ToString(), txtBox_newPlaylistName.Text);
-
-                            comboBox_playlists.Items.Clear();
-                            List<string> playlists = manager.LoadPlaylists();
-                            foreach (var item in playlists)
-                            {
-                                comboBox_playlists.Items.Add(item);
-                            }
-
-                            //comboBox_playlists.Items.Remove(comboBox_playlists.SelectedItem);
-                            //comboBox_playlists.Items.Add(txtBox_newPlaylistName.Text);
-                            comboBox_playlists.Text = "";
-                            txtBox_newPlaylistName.Text = "";
+                            comboBox_playlists.Items.Add(item);
                         }
+
+                        //comboBox_playlists.Items.Remove(comboBox_playlists.SelectedItem);
+                        //comboBox_playlists.Items.Add(txtBox_newPlaylistName.Text);
+                        comboBox_playlists.Text = "";
+                        txtBox_newPlaylistName.Text = "";
                     }
                 }
             }

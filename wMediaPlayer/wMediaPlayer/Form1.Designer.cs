@@ -40,9 +40,9 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsPlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_Play = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.xWMP = new AxWMPLib.AxWindowsMediaPlayer();
@@ -52,13 +52,12 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.HiddenColumnPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dataSet1 = new System.Data.DataSet();
             this.btn_stop = new System.Windows.Forms.Button();
             this.btn_prev = new System.Windows.Forms.Button();
             this.btn_next = new System.Windows.Forms.Button();
             this.btn_mute = new System.Windows.Forms.Button();
-            this.deleteSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.HiddenColumnPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -76,7 +75,7 @@
             this.playlistToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(952, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(954, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -130,7 +129,7 @@
             this.playlistToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.playlistToolStripMenuItem1.Name = "playlistToolStripMenuItem1";
             this.playlistToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.playlistToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.playlistToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
             this.playlistToolStripMenuItem1.Text = "Playlist";
             this.playlistToolStripMenuItem1.Click += new System.EventHandler(this.playlistToolStripMenuItem1_Click);
             // 
@@ -142,8 +141,7 @@
             this.addToolStripMenuItem,
             this.deleteSongToolStripMenuItem,
             this.deleteToolStripMenuItem,
-            this.renameToolStripMenuItem,
-            this.saveAsPlToolStripMenuItem});
+            this.renameToolStripMenuItem});
             this.playlistToolStripMenuItem.Name = "playlistToolStripMenuItem";
             this.playlistToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             this.playlistToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
@@ -153,7 +151,7 @@
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -161,22 +159,30 @@
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
             this.addToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.addToolStripMenuItem.Text = "Add song";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // deleteSongToolStripMenuItem
+            // 
+            this.deleteSongToolStripMenuItem.Name = "deleteSongToolStripMenuItem";
+            this.deleteSongToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteSongToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.deleteSongToolStripMenuItem.Text = "Delete song";
+            this.deleteSongToolStripMenuItem.Click += new System.EventHandler(this.deleteSongToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -184,19 +190,13 @@
             // 
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
             this.renameToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.renameToolStripMenuItem.Text = "Rename";
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
             // 
-            // saveAsPlToolStripMenuItem
-            // 
-            this.saveAsPlToolStripMenuItem.Name = "saveAsPlToolStripMenuItem";
-            this.saveAsPlToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveAsPlToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.saveAsPlToolStripMenuItem.Text = "Save as playlist";
-            // 
             // btn_Play
             // 
+            this.btn_Play.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_Play.Location = new System.Drawing.Point(12, 329);
             this.btn_Play.Name = "btn_Play";
             this.btn_Play.Size = new System.Drawing.Size(75, 23);
@@ -207,6 +207,9 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(12, 27);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -236,16 +239,18 @@
             // 
             // lbl_totalDuration
             // 
+            this.lbl_totalDuration.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbl_totalDuration.AutoSize = true;
             this.lbl_totalDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_totalDuration.Location = new System.Drawing.Point(327, 234);
+            this.lbl_totalDuration.Location = new System.Drawing.Point(343, 234);
             this.lbl_totalDuration.Name = "lbl_totalDuration";
-            this.lbl_totalDuration.Size = new System.Drawing.Size(87, 20);
+            this.lbl_totalDuration.Size = new System.Drawing.Size(71, 20);
             this.lbl_totalDuration.TabIndex = 3;
-            this.lbl_totalDuration.Text = "00 : 00 : 00";
+            this.lbl_totalDuration.Text = "00:00:00";
             // 
             // lblwhatever
             // 
+            this.lblwhatever.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblwhatever.AutoSize = true;
             this.lblwhatever.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblwhatever.Location = new System.Drawing.Point(3, 234);
@@ -268,6 +273,9 @@
             // 
             // listView1
             // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Title,
             this.Time,
@@ -285,12 +293,17 @@
             // Title
             // 
             this.Title.Text = "Title";
-            this.Title.Width = 350;
+            this.Title.Width = 353;
             // 
             // Time
             // 
             this.Time.Text = "Time";
             this.Time.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // HiddenColumnPath
+            // 
+            this.HiddenColumnPath.Text = "Path";
+            this.HiddenColumnPath.Width = 0;
             // 
             // dataSet1
             // 
@@ -298,6 +311,7 @@
             // 
             // btn_stop
             // 
+            this.btn_stop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_stop.Location = new System.Drawing.Point(94, 329);
             this.btn_stop.Name = "btn_stop";
             this.btn_stop.Size = new System.Drawing.Size(75, 23);
@@ -308,6 +322,7 @@
             // 
             // btn_prev
             // 
+            this.btn_prev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_prev.Location = new System.Drawing.Point(176, 329);
             this.btn_prev.Name = "btn_prev";
             this.btn_prev.Size = new System.Drawing.Size(75, 23);
@@ -318,6 +333,7 @@
             // 
             // btn_next
             // 
+            this.btn_next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_next.Location = new System.Drawing.Point(258, 329);
             this.btn_next.Name = "btn_next";
             this.btn_next.Size = new System.Drawing.Size(75, 23);
@@ -328,6 +344,7 @@
             // 
             // btn_mute
             // 
+            this.btn_mute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_mute.Location = new System.Drawing.Point(340, 329);
             this.btn_mute.Name = "btn_mute";
             this.btn_mute.Size = new System.Drawing.Size(75, 23);
@@ -336,24 +353,11 @@
             this.btn_mute.UseVisualStyleBackColor = true;
             this.btn_mute.Click += new System.EventHandler(this.btn_mute_Click);
             // 
-            // deleteSongToolStripMenuItem
-            // 
-            this.deleteSongToolStripMenuItem.Name = "deleteSongToolStripMenuItem";
-            this.deleteSongToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteSongToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.deleteSongToolStripMenuItem.Text = "Delete song";
-            this.deleteSongToolStripMenuItem.Click += new System.EventHandler(this.deleteSongToolStripMenuItem_Click);
-            // 
-            // HiddenColumnPath
-            // 
-            this.HiddenColumnPath.Text = "Path";
-            this.HiddenColumnPath.Width = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(952, 364);
+            this.ClientSize = new System.Drawing.Size(954, 362);
             this.Controls.Add(this.btn_mute);
             this.Controls.Add(this.btn_next);
             this.Controls.Add(this.btn_prev);
@@ -362,6 +366,7 @@
             this.Controls.Add(this.btn_Play);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(970, 400);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -409,7 +414,6 @@
         private System.Windows.Forms.Label lbl_playlistName;
         private System.Windows.Forms.Label lblwhatever;
         private System.Windows.Forms.Label lbl_totalDuration;
-        private System.Windows.Forms.ToolStripMenuItem saveAsPlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteSongToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader HiddenColumnPath;
 

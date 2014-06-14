@@ -24,6 +24,7 @@ namespace wMediaPlayer
         private PlayListManager manager;
         private DataSet1 dataset;
         private AxWindowsMediaPlayer mp;
+        private string currentPlaylist;
 
         public DeletePlaylist(Form1 form, DataSet1 dataset, AxWindowsMediaPlayer mp)
         {
@@ -33,6 +34,12 @@ namespace wMediaPlayer
             this.dataset = dataset;
             manager = new PlayListManager(dataset);
             this.mp = mp;
+        }
+
+        public DeletePlaylist(Form1 form, DataSet1 dataset, AxWindowsMediaPlayer mp, string currentPlaylist)
+            : this(form, dataset, mp)
+        {
+            this.currentPlaylist = currentPlaylist;
         }
 
         private void DeletePlaylist_Load(object sender, EventArgs e)
@@ -63,6 +70,7 @@ namespace wMediaPlayer
                     {
                         if (MessageBox.Show("Are you sure you want to delete this playlist?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
+                            currentPlaylist = comboBox1.SelectedIndex + 1.ToString();
                             manager.DeletePlaylist(comboBox1.Text);
                             comboBox1.Items.Remove(comboBox1.SelectedItem);
                             comboBox1.Text = "";

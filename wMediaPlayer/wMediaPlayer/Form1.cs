@@ -306,23 +306,6 @@ namespace wMediaPlayer
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
             ListViewItem item = listView1.SelectedItems[0];
-            //string[] duration = item.SubItems[1].Text.Split(':');
-            TimeSpan? timeSpan = null;
-
-
-            //if (duration.Length == 3)
-            //{
-            //    timeSpan = new TimeSpan(Convert.ToInt32(duration[0]), Convert.ToInt32(duration[1]), Convert.ToInt32(duration[2]));
-            //}
-            //else
-            //{
-            //    timeSpan = new TimeSpan(0, Convert.ToInt32(duration[0]), Convert.ToInt32(duration[1]));
-            //}
-
-            //PlayListItem selectedSong = new PlayListItem(item.SubItems[0].Text, item.SubItems[2].Text, timeSpan);
-
-            //if (selectedSong == null)
-            //    return;
 
             PlayListItem plItem = new PlayListItem(item.SubItems[0].Text,
                                                     item.SubItems[2].Text,
@@ -331,16 +314,27 @@ namespace wMediaPlayer
 
             try
             {
+                //IWMPPlaylist playlist = xWMP.playlistCollection.getByName(CurrentPlayList).Item(0);
+
+                //for (int i = 0; i < playlist.count; i++)
+                //{
+                //    bool isSameUrl = string.Equals(playlist.Item[i].sourceURL, plItem.Path, StringComparison.InvariantCultureIgnoreCase);
+                //    if (!isSameUrl)
+                //        continue;
+
+                //    xWMP.Ctlcontrols.playItem(playlist.Item[i]);
+                //}
                 IWMPPlaylist playlist = xWMP.playlistCollection.getByName(CurrentPlayList).Item(0);
-
-                for (int i = 0; i < playlist.count; i++)
+                IWMPMedia media = xWMP.newMedia(item.SubItems[2].Text);
+                while (!xWMP.Ctlcontrols.currentItem.sourceURL.Equals(item.SubItems[2].Text))
                 {
-                    bool isSameUrl = string.Equals(playlist.Item[i].sourceURL, plItem.Path, StringComparison.InvariantCultureIgnoreCase);
-                    if (!isSameUrl)
-                        continue;
-
-                    xWMP.Ctlcontrols.playItem(playlist.Item[i]);
+                    xWMP.Ctlcontrols.next();
                 }
+                xWMP.Ctlcontrols.play();
+
+
+
+                //xWMP.Ctlcontrols.playItem(playlist.Item[i]);
             }
             catch (Exception)
             {
