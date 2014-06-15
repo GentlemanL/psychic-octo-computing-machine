@@ -397,7 +397,6 @@ namespace wMediaPlayer
                 }
                 else
                 {
-
                     IWMPPlaylist playlist = xWMP.playlistCollection.getByName(CurrentPlayList).Item(0);
                     IWMPMedia media = xWMP.newMedia(item.SubItems[2].Text);
                     while (!xWMP.Ctlcontrols.currentItem.sourceURL.Equals(item.SubItems[2].Text))

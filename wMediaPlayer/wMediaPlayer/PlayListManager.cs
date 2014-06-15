@@ -86,6 +86,7 @@ namespace wMediaPlayer
                 if (dataset.Song.Rows[i]["SongName"].ToString() == name)
                 {
                     dataset.Song.Rows[i].Delete();
+                    break;
                 }
             }
         }
