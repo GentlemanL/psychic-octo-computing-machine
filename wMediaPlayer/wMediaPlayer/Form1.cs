@@ -52,7 +52,7 @@ namespace wMediaPlayer
             }
 
             TotalDuration = new TimeSpan(0, 0, 0);
-            newPlaylistCreated = false;
+            //newPlaylistCreated = false;
         }
 
         private ToolStripMenuItem CreateOpenMenuItem(string playlist)
@@ -259,6 +259,7 @@ namespace wMediaPlayer
             if (xWMP.settings.mute == true)
             {
                 xWMP.settings.mute = false;
+                xWMP.settings.volume = trackBar1.Value;
             }
             else
             {
@@ -278,7 +279,7 @@ namespace wMediaPlayer
                 ToolStripMenuItem tsmi = CreateOpenMenuItem(CurrentPlayList);
                 openToolStripMenuItem.DropDownItems.Add(tsmi);
                 listView1.Items.Clear();
-                newPlaylistCreated = false;
+                //newPlaylistCreated = false;
             }
         }
         private void updateOpenTSMI()
@@ -357,11 +358,25 @@ namespace wMediaPlayer
 
         private void deleteSongToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Are you sure you want to delete the song?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                IWMPMedia media = xWMP.newMedia(listView1.SelectedItems[0].SubItems[2].Text);
+                manager.DeleteSong(listView1.SelectedItems[0].SubItems[0].Text);
+                
+                totalD = media.durationString;
+                if (totalD.Length < 6)
+                {
+                    totalD = "00:" + totalD;
+                }
+                TotalDuration -= TimeSpan.Parse(totalD);
+                lbl_totalDuration.Text = TotalDuration.ToString();
+
+                listView1.Items.Remove(listView1.SelectedItems[0]);
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void listView1_DoubleClick(object sender, EventArgs e)
@@ -401,6 +416,42 @@ namespace wMediaPlayer
             {
                 MessageBox.Show("File not found! Delete song and add it from its new location!");
             }
+        }
+
+        private void openURLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string URL = Microsoft.VisualBasic.Interaction.InputBox("Prompt", "Title", "Default", -1, -1);
+            if (URL != "")
+            {
+                IWMPMedia media = xWMP.newMedia(URL);
+                xWMP.URL = URL;
+
+                listView1.Items.Clear();
+                addItemToListView(Path.GetFileName(URL), lbl_totalDuration.Text = media.durationString, URL);
+            }
+            //NewPlaylist np = new NewPlaylist(this, dataset, xWMP);
+            //np.ShowDialog();
+
+            //if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //{
+            //    string songName = Path.GetFileName(ofd.FileName);
+            //    path = ofd.FileName;
+            //    IWMPMedia media = xWMP.newMedia(path);
+            //    xWMP.URL = path;
+
+            //    listView1.Items.Clear();
+            //    addItemToListView(songName, lbl_totalDuration.Text = media.durationString, path);
+            //}
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void trckBar_sound_Scroll(object sender, EventArgs e)
+        {
+            xWMP.settings.volume = trackBar1.Value;
         }
     }
 }

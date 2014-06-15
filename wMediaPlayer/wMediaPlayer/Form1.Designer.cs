@@ -58,6 +58,9 @@
             this.btn_prev = new System.Windows.Forms.Button();
             this.btn_next = new System.Windows.Forms.Button();
             this.btn_mute = new System.Windows.Forms.Button();
+            this.openURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.trckBar_sound = new System.Windows.Forms.TrackBar();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -65,6 +68,8 @@
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xWMP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trckBar_sound)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -84,6 +89,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openFileToolStripMenuItem,
             this.openFolderToolStripMenuItem,
+            this.openURLToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -223,7 +229,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.lblwhatever);
             this.splitContainer1.Panel2.Controls.Add(this.lbl_playlistName);
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(928, 263);
+            this.splitContainer1.Size = new System.Drawing.Size(928, 228);
             this.splitContainer1.SplitterDistance = 507;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -234,7 +240,7 @@
             this.xWMP.Location = new System.Drawing.Point(0, 0);
             this.xWMP.Name = "xWMP";
             this.xWMP.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("xWMP.OcxState")));
-            this.xWMP.Size = new System.Drawing.Size(507, 263);
+            this.xWMP.Size = new System.Drawing.Size(507, 228);
             this.xWMP.TabIndex = 0;
             // 
             // lbl_totalDuration
@@ -242,7 +248,7 @@
             this.lbl_totalDuration.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbl_totalDuration.AutoSize = true;
             this.lbl_totalDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_totalDuration.Location = new System.Drawing.Point(343, 234);
+            this.lbl_totalDuration.Location = new System.Drawing.Point(343, 199);
             this.lbl_totalDuration.Name = "lbl_totalDuration";
             this.lbl_totalDuration.Size = new System.Drawing.Size(71, 20);
             this.lbl_totalDuration.TabIndex = 3;
@@ -253,7 +259,7 @@
             this.lblwhatever.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblwhatever.AutoSize = true;
             this.lblwhatever.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblwhatever.Location = new System.Drawing.Point(3, 234);
+            this.lblwhatever.Location = new System.Drawing.Point(3, 199);
             this.lblwhatever.Name = "lblwhatever";
             this.lblwhatever.Size = new System.Drawing.Size(114, 20);
             this.lblwhatever.TabIndex = 2;
@@ -283,7 +289,7 @@
             this.listView1.Location = new System.Drawing.Point(0, 27);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(417, 204);
+            this.listView1.Size = new System.Drawing.Size(417, 169);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -353,11 +359,39 @@
             this.btn_mute.UseVisualStyleBackColor = true;
             this.btn_mute.Click += new System.EventHandler(this.btn_mute_Click);
             // 
+            // openURLToolStripMenuItem
+            // 
+            this.openURLToolStripMenuItem.Name = "openURLToolStripMenuItem";
+            this.openURLToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.openURLToolStripMenuItem.Text = "Open URL";
+            this.openURLToolStripMenuItem.Click += new System.EventHandler(this.openURLToolStripMenuItem_Click);
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(12, 261);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(507, 45);
+            this.trackBar1.TabIndex = 7;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // trckBar_sound
+            // 
+            this.trckBar_sound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.trckBar_sound.Location = new System.Drawing.Point(421, 307);
+            this.trckBar_sound.Maximum = 100;
+            this.trckBar_sound.Name = "trckBar_sound";
+            this.trckBar_sound.Size = new System.Drawing.Size(100, 45);
+            this.trckBar_sound.TabIndex = 8;
+            this.trckBar_sound.Value = 50;
+            this.trckBar_sound.Scroll += new System.EventHandler(this.trckBar_sound_Scroll);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(954, 362);
+            this.Controls.Add(this.trckBar_sound);
+            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.btn_mute);
             this.Controls.Add(this.btn_next);
             this.Controls.Add(this.btn_prev);
@@ -380,6 +414,8 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xWMP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trckBar_sound)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -416,6 +452,9 @@
         private System.Windows.Forms.Label lbl_totalDuration;
         private System.Windows.Forms.ToolStripMenuItem deleteSongToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader HiddenColumnPath;
+        private System.Windows.Forms.ToolStripMenuItem openURLToolStripMenuItem;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar trckBar_sound;
 
     }
 }
