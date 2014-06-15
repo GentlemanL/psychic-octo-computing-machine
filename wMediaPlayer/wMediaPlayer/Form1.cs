@@ -21,6 +21,8 @@ namespace wMediaPlayer
         private string path;
         public bool newPlaylistCreated { get; set; }
         private PlayListManager manager;
+        private Timer myTimer;
+        private int trackTime = 0;
         //public IWMPPlaylist defaultPlaylist;
 
         private string currentPlayList;
@@ -52,7 +54,13 @@ namespace wMediaPlayer
             }
 
             TotalDuration = new TimeSpan(0, 0, 0);
-            //newPlaylistCreated = false;
+            myTimer = new Timer();
+
+            myTimer.Tick += new EventHandler(timer1_Tick); // Everytime timer ticks, timer_Tick will be called
+            myTimer.Interval = (1000) * (1);              // Timer will tick evert second
+            //myTimer.Enabled = true;                       // Enable the timer
+            //myTimer.Start();                              // Start the timer
+            newPlaylistCreated = false;
         }
 
         private ToolStripMenuItem CreateOpenMenuItem(string playlist)
@@ -237,6 +245,7 @@ namespace wMediaPlayer
         private void btn_Play_Click(object sender, EventArgs e)
         {
             xWMP.Ctlcontrols.play();
+            myTimer.Start();
         }
 
         private void btn_next_Click(object sender, EventArgs e)
@@ -252,6 +261,8 @@ namespace wMediaPlayer
         private void btn_stop_Click(object sender, EventArgs e)
         {
             xWMP.Ctlcontrols.stop();
+            myTimer.Stop();
+            trackTime = 0;
         }
 
         private void btn_mute_Click(object sender, EventArgs e)
@@ -279,7 +290,7 @@ namespace wMediaPlayer
                 ToolStripMenuItem tsmi = CreateOpenMenuItem(CurrentPlayList);
                 openToolStripMenuItem.DropDownItems.Add(tsmi);
                 listView1.Items.Clear();
-                //newPlaylistCreated = false;
+                newPlaylistCreated = false;
             }
         }
         private void updateOpenTSMI()
@@ -411,6 +422,8 @@ namespace wMediaPlayer
             {
                 MessageBox.Show("File not found! Delete song and add it from its new location!");
             }
+            adjustTimeBar();
+            myTimer.Start();
         }
 
         private void openURLToolStripMenuItem_Click(object sender, EventArgs e)
@@ -429,12 +442,30 @@ namespace wMediaPlayer
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-
+            
         }
 
         private void trckBar_sound_Scroll(object sender, EventArgs e)
         {
             xWMP.settings.volume = trackBar_sound.Value;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            trackTime++;
+            trackBar1.Value = trackTime;
+            if (trackTime == trackBar1.Maximum)
+            {
+                trackTime = 0;
+                adjustTimeBar();
+            }
+        }
+
+        private void adjustTimeBar()
+        {
+            IWMPMedia media = xWMP.newMedia(xWMP.Ctlcontrols.currentItem.sourceURL);
+            double time = media.duration;
+            trackBar1.Maximum = Convert.ToInt32(time);
         }
     }
 }
