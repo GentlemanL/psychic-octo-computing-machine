@@ -390,27 +390,23 @@ namespace wMediaPlayer
 
             try
             {
-                //IWMPPlaylist playlist = xWMP.playlistCollection.getByName(CurrentPlayList).Item(0);
-
-                //for (int i = 0; i < playlist.count; i++)
-                //{
-                //    bool isSameUrl = string.Equals(playlist.Item[i].sourceURL, plItem.Path, StringComparison.InvariantCultureIgnoreCase);
-                //    if (!isSameUrl)
-                //        continue;
-
-                //    xWMP.Ctlcontrols.playItem(playlist.Item[i]);
-                //}
-                IWMPPlaylist playlist = xWMP.playlistCollection.getByName(CurrentPlayList).Item(0);
-                IWMPMedia media = xWMP.newMedia(item.SubItems[2].Text);
-                while (!xWMP.Ctlcontrols.currentItem.sourceURL.Equals(item.SubItems[2].Text))
+                if (xWMP.Ctlcontrols.currentItem.sourceURL.Equals(item.SubItems[2].Text))
                 {
-                    xWMP.Ctlcontrols.next();
+                    xWMP.Ctlcontrols.stop();
+                    xWMP.Ctlcontrols.play();
                 }
-                xWMP.Ctlcontrols.play();
+                else
+                {
 
-
-
-                //xWMP.Ctlcontrols.playItem(playlist.Item[i]);
+                    IWMPPlaylist playlist = xWMP.playlistCollection.getByName(CurrentPlayList).Item(0);
+                    IWMPMedia media = xWMP.newMedia(item.SubItems[2].Text);
+                    while (!xWMP.Ctlcontrols.currentItem.sourceURL.Equals(item.SubItems[2].Text))
+                    {
+                        xWMP.Ctlcontrols.next();
+                    }
+                    xWMP.Ctlcontrols.play();
+                    //xWMP.Ctlcontrols.playItem(playlist.Item[i]);
+                }
             }
             catch (Exception)
             {
@@ -426,22 +422,10 @@ namespace wMediaPlayer
                 IWMPMedia media = xWMP.newMedia(URL);
                 xWMP.URL = URL;
 
+                lbl_playlistName.Text = "Playlist name";
                 listView1.Items.Clear();
                 addItemToListView(Path.GetFileName(URL), lbl_totalDuration.Text = media.durationString, URL);
             }
-            //NewPlaylist np = new NewPlaylist(this, dataset, xWMP);
-            //np.ShowDialog();
-
-            //if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //{
-            //    string songName = Path.GetFileName(ofd.FileName);
-            //    path = ofd.FileName;
-            //    IWMPMedia media = xWMP.newMedia(path);
-            //    xWMP.URL = path;
-
-            //    listView1.Items.Clear();
-            //    addItemToListView(songName, lbl_totalDuration.Text = media.durationString, path);
-            //}
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
