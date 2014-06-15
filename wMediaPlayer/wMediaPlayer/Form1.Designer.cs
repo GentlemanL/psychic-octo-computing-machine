@@ -60,7 +60,7 @@
             this.btn_mute = new System.Windows.Forms.Button();
             this.openURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.trckBar_sound = new System.Windows.Forms.TrackBar();
+            this.trackBar_sound = new System.Windows.Forms.TrackBar();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -69,7 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.xWMP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trckBar_sound)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_sound)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -374,23 +374,23 @@
             this.trackBar1.TabIndex = 7;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
-            // trckBar_sound
+            // trackBar_sound
             // 
-            this.trckBar_sound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.trckBar_sound.Location = new System.Drawing.Point(421, 307);
-            this.trckBar_sound.Maximum = 100;
-            this.trckBar_sound.Name = "trckBar_sound";
-            this.trckBar_sound.Size = new System.Drawing.Size(100, 45);
-            this.trckBar_sound.TabIndex = 8;
-            this.trckBar_sound.Value = 50;
-            this.trckBar_sound.Scroll += new System.EventHandler(this.trckBar_sound_Scroll);
+            this.trackBar_sound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.trackBar_sound.Location = new System.Drawing.Point(421, 307);
+            this.trackBar_sound.Maximum = 100;
+            this.trackBar_sound.Name = "trackBar_sound";
+            this.trackBar_sound.Size = new System.Drawing.Size(100, 45);
+            this.trackBar_sound.TabIndex = 8;
+            this.trackBar_sound.Value = 50;
+            this.trackBar_sound.Scroll += new System.EventHandler(this.trckBar_sound_Scroll);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(954, 362);
-            this.Controls.Add(this.trckBar_sound);
+            this.Controls.Add(this.trackBar_sound);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.btn_mute);
             this.Controls.Add(this.btn_next);
@@ -415,7 +415,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.xWMP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trckBar_sound)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_sound)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -454,7 +454,7 @@
         private System.Windows.Forms.ColumnHeader HiddenColumnPath;
         private System.Windows.Forms.ToolStripMenuItem openURLToolStripMenuItem;
         private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.TrackBar trckBar_sound;
+        private System.Windows.Forms.TrackBar trackBar_sound;
 
     }
 }

@@ -116,12 +116,12 @@ namespace wMediaPlayer
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.Filter = "Media Files|*.mpg;*.avi;*.wma;*.mov;" + "*.wav;*.mp2;*.mp3|All Files|*.*";
                 ofd.Multiselect = true;
-                
+
                 try
                 {
                     //List<PlayListItem> items = new List<PlayListItem>();
                     Dictionary<string, string> dsfsd = new Dictionary<string, string>();
-                    
+
                     if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         //string songName = Path.GetFileName(ofd.FileName);
@@ -147,7 +147,7 @@ namespace wMediaPlayer
 
                         List<PlayListItem> items = new List<PlayListItem>();
                         IWMPPlaylist playlist = xWMP.playlistCollection.getByName(CurrentPlayList).Item(0);
-                        
+
                         foreach (string path in ofd.FileNames)
                         {
                             IWMPMedia media = xWMP.newMedia(path);
@@ -217,7 +217,7 @@ namespace wMediaPlayer
             //}
             //***************************
         }
-             
+
 
         private void playlistToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -259,7 +259,7 @@ namespace wMediaPlayer
             if (xWMP.settings.mute == true)
             {
                 xWMP.settings.mute = false;
-                xWMP.settings.volume = trackBar1.Value;
+                xWMP.settings.volume = trackBar_sound.Value;
             }
             else
             {
@@ -362,7 +362,7 @@ namespace wMediaPlayer
             {
                 IWMPMedia media = xWMP.newMedia(listView1.SelectedItems[0].SubItems[2].Text);
                 manager.DeleteSong(listView1.SelectedItems[0].SubItems[0].Text);
-                
+
                 totalD = media.durationString;
                 if (totalD.Length < 6)
                 {
@@ -446,12 +446,12 @@ namespace wMediaPlayer
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            
+
         }
 
         private void trckBar_sound_Scroll(object sender, EventArgs e)
         {
-            xWMP.settings.volume = trackBar1.Value;
+            xWMP.settings.volume = trackBar_sound.Value;
         }
     }
 }
