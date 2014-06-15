@@ -233,11 +233,13 @@ namespace wMediaPlayer
         private void btn_next_Click(object sender, EventArgs e)
         {
             xWMP.Ctlcontrols.next();
+            adjustTimeBar();
         }
 
         private void btn_prev_Click(object sender, EventArgs e)
         {
             xWMP.Ctlcontrols.previous();
+            adjustTimeBar();
         }
 
         private void btn_stop_Click(object sender, EventArgs e)
@@ -428,6 +430,12 @@ namespace wMediaPlayer
             xWMP.settings.volume = trackBar_sound.Value;
         }
 
+        private string songTime(int tmp)
+        {
+            string time = String.Format("{0}:{1}:{2}", tmp / 3600, tmp / 60, tmp % 60);
+            return time;
+        }
+
         private void tickAction()
         {
             if (isPaused)
@@ -436,7 +444,8 @@ namespace wMediaPlayer
             }
             else
             {
-                txtBox_currentTime.Text = trackTime.ToString();
+                //txtBox_currentTime.Text = trackTime.ToString();
+                txtBox_currentTime.Text = songTime(trackBar1.Value);
                 trackBar1.Value = trackTime;
                 trackTime++;
 
