@@ -57,7 +57,7 @@ namespace wMediaPlayer
             myTimer = new Timer();
 
             myTimer.Tick += new EventHandler(timer1_Tick); // Everytime timer ticks, timer_Tick will be called
-            myTimer.Interval = (1000) * (1);              // Timer will tick evert second
+            myTimer.Interval = (1) * (1000);              // Timer will tick evert second
             //myTimer.Enabled = true;                       // Enable the timer
             //myTimer.Start();                              // Start the timer
             newPlaylistCreated = false;
@@ -381,7 +381,9 @@ namespace wMediaPlayer
                     }
                     xWMP.Ctlcontrols.play();
                 }
+
                 adjustTimeBar();
+                tickAction();
                 myTimer.Start();
 
             }
@@ -415,16 +417,22 @@ namespace wMediaPlayer
             xWMP.settings.volume = trackBar_sound.Value;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void tickAction()
         {
             txtBox_currentTime.Text = trackTime.ToString();
             trackBar1.Value = trackTime;
             trackTime++;
 
+
             if (trackBar1.Value == trackBar1.Maximum)
             {
                 adjustTimeBar();
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            tickAction();
         }
 
 
