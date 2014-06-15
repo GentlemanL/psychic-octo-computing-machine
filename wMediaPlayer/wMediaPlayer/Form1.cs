@@ -403,7 +403,7 @@ namespace wMediaPlayer
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            
+            //xWMP.Ctlcontrols.currentPosition = Convert.ToDouble(trackBar1.Value);
         }
 
         private void trckBar_sound_Scroll(object sender, EventArgs e)
@@ -441,6 +441,22 @@ namespace wMediaPlayer
         private void xWMP_PlayStateChange(object sender, _WMPOCXEvents_PlayStateChangeEvent e)
         {
 
+        }
+
+        private void trackBar1_MouseDown(object sender, MouseEventArgs e)
+        {
+            double dblValue;
+
+            dblValue = ((double)e.X / (double)trackBar1.Width) * (trackBar1.Maximum - trackBar1.Minimum);
+            trackBar1.Value = Convert.ToInt32(dblValue);
+            xWMP.Ctlcontrols.currentPosition = dblValue;
+            trackTime = trackBar1.Value;
+        }
+
+        private void trackBar1_Move(object sender, EventArgs e)
+        {
+            xWMP.Ctlcontrols.currentPosition = Convert.ToDouble(trackBar1.Value);
+            trackTime = trackBar1.Value;
         }
     }
 }

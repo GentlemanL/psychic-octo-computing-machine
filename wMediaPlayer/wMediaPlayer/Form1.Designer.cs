@@ -379,6 +379,8 @@
             this.trackBar1.Size = new System.Drawing.Size(425, 45);
             this.trackBar1.TabIndex = 7;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.trackBar1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.trackBar1_MouseDown);
+            this.trackBar1.Move += new System.EventHandler(this.trackBar1_Move);
             // 
             // trackBar_sound
             // 
