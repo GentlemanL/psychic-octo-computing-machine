@@ -45,7 +45,6 @@
             this.deleteSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btn_Play = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.xWMP = new AxWMPLib.AxWindowsMediaPlayer();
             this.lbl_totalDuration = new System.Windows.Forms.Label();
@@ -56,14 +55,16 @@
             this.Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.HiddenColumnPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dataSet1 = new System.Data.DataSet();
-            this.btn_stop = new System.Windows.Forms.Button();
-            this.btn_prev = new System.Windows.Forms.Button();
-            this.btn_next = new System.Windows.Forms.Button();
             this.btn_mute = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.trackBar_sound = new System.Windows.Forms.TrackBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.txtBox_currentTime = new System.Windows.Forms.TextBox();
+            this.btn_next = new System.Windows.Forms.Button();
+            this.btn_prev = new System.Windows.Forms.Button();
+            this.btn_stop = new System.Windows.Forms.Button();
+            this.btn_Play = new System.Windows.Forms.Button();
+            this.btn_pause = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -211,17 +212,6 @@
             this.renameToolStripMenuItem.Text = "Rename";
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
             // 
-            // btn_Play
-            // 
-            this.btn_Play.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Play.Location = new System.Drawing.Point(12, 329);
-            this.btn_Play.Name = "btn_Play";
-            this.btn_Play.Size = new System.Drawing.Size(75, 23);
-            this.btn_Play.TabIndex = 1;
-            this.btn_Play.Text = "Play";
-            this.btn_Play.UseVisualStyleBackColor = true;
-            this.btn_Play.Click += new System.EventHandler(this.btn_Play_Click);
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -327,43 +317,10 @@
             // 
             this.dataSet1.DataSetName = "NewDataSet";
             // 
-            // btn_stop
-            // 
-            this.btn_stop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_stop.Location = new System.Drawing.Point(94, 329);
-            this.btn_stop.Name = "btn_stop";
-            this.btn_stop.Size = new System.Drawing.Size(75, 23);
-            this.btn_stop.TabIndex = 3;
-            this.btn_stop.Text = "Stop";
-            this.btn_stop.UseVisualStyleBackColor = true;
-            this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
-            // 
-            // btn_prev
-            // 
-            this.btn_prev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_prev.Location = new System.Drawing.Point(176, 329);
-            this.btn_prev.Name = "btn_prev";
-            this.btn_prev.Size = new System.Drawing.Size(75, 23);
-            this.btn_prev.TabIndex = 4;
-            this.btn_prev.Text = "Prev";
-            this.btn_prev.UseVisualStyleBackColor = true;
-            this.btn_prev.Click += new System.EventHandler(this.btn_prev_Click);
-            // 
-            // btn_next
-            // 
-            this.btn_next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_next.Location = new System.Drawing.Point(258, 329);
-            this.btn_next.Name = "btn_next";
-            this.btn_next.Size = new System.Drawing.Size(75, 23);
-            this.btn_next.TabIndex = 5;
-            this.btn_next.Text = "Next";
-            this.btn_next.UseVisualStyleBackColor = true;
-            this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
-            // 
             // btn_mute
             // 
             this.btn_mute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_mute.Location = new System.Drawing.Point(340, 329);
+            this.btn_mute.Location = new System.Drawing.Point(811, 327);
             this.btn_mute.Name = "btn_mute";
             this.btn_mute.Size = new System.Drawing.Size(75, 23);
             this.btn_mute.TabIndex = 6;
@@ -373,10 +330,10 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(94, 261);
+            this.trackBar1.Location = new System.Drawing.Point(12, 261);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(425, 45);
+            this.trackBar1.Size = new System.Drawing.Size(507, 45);
             this.trackBar1.TabIndex = 7;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             this.trackBar1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.trackBar1_MouseDown);
@@ -385,10 +342,11 @@
             // trackBar_sound
             // 
             this.trackBar_sound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.trackBar_sound.Location = new System.Drawing.Point(421, 307);
+            this.trackBar_sound.Location = new System.Drawing.Point(892, 261);
             this.trackBar_sound.Maximum = 100;
             this.trackBar_sound.Name = "trackBar_sound";
-            this.trackBar_sound.Size = new System.Drawing.Size(100, 45);
+            this.trackBar_sound.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBar_sound.Size = new System.Drawing.Size(45, 100);
             this.trackBar_sound.TabIndex = 8;
             this.trackBar_sound.Value = 50;
             this.trackBar_sound.Scroll += new System.EventHandler(this.trckBar_sound_Scroll);
@@ -400,17 +358,77 @@
             // txtBox_currentTime
             // 
             this.txtBox_currentTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtBox_currentTime.Location = new System.Drawing.Point(12, 261);
+            this.txtBox_currentTime.Location = new System.Drawing.Point(224, 297);
             this.txtBox_currentTime.Name = "txtBox_currentTime";
             this.txtBox_currentTime.ReadOnly = true;
             this.txtBox_currentTime.Size = new System.Drawing.Size(75, 20);
             this.txtBox_currentTime.TabIndex = 9;
+            // 
+            // btn_next
+            // 
+            this.btn_next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_next.BackgroundImage = global::wMediaPlayer.Properties.Resources.next21;
+            this.btn_next.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_next.Location = new System.Drawing.Point(709, 261);
+            this.btn_next.Name = "btn_next";
+            this.btn_next.Size = new System.Drawing.Size(40, 40);
+            this.btn_next.TabIndex = 5;
+            this.btn_next.UseVisualStyleBackColor = true;
+            this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
+            // 
+            // btn_prev
+            // 
+            this.btn_prev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_prev.BackgroundImage = global::wMediaPlayer.Properties.Resources.prev2;
+            this.btn_prev.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_prev.Location = new System.Drawing.Point(525, 261);
+            this.btn_prev.Name = "btn_prev";
+            this.btn_prev.Size = new System.Drawing.Size(40, 40);
+            this.btn_prev.TabIndex = 4;
+            this.btn_prev.UseVisualStyleBackColor = true;
+            this.btn_prev.Click += new System.EventHandler(this.btn_prev_Click);
+            // 
+            // btn_stop
+            // 
+            this.btn_stop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_stop.BackgroundImage = global::wMediaPlayer.Properties.Resources.stop2;
+            this.btn_stop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_stop.Location = new System.Drawing.Point(663, 261);
+            this.btn_stop.Name = "btn_stop";
+            this.btn_stop.Size = new System.Drawing.Size(40, 40);
+            this.btn_stop.TabIndex = 3;
+            this.btn_stop.UseVisualStyleBackColor = true;
+            this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
+            // 
+            // btn_Play
+            // 
+            this.btn_Play.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_Play.BackgroundImage = global::wMediaPlayer.Properties.Resources.play2;
+            this.btn_Play.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_Play.Location = new System.Drawing.Point(571, 261);
+            this.btn_Play.Name = "btn_Play";
+            this.btn_Play.Size = new System.Drawing.Size(40, 40);
+            this.btn_Play.TabIndex = 1;
+            this.btn_Play.UseVisualStyleBackColor = true;
+            this.btn_Play.Click += new System.EventHandler(this.btn_Play_Click);
+            // 
+            // btn_pause
+            // 
+            this.btn_pause.BackgroundImage = global::wMediaPlayer.Properties.Resources.pause2;
+            this.btn_pause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_pause.Location = new System.Drawing.Point(617, 261);
+            this.btn_pause.Name = "btn_pause";
+            this.btn_pause.Size = new System.Drawing.Size(40, 40);
+            this.btn_pause.TabIndex = 10;
+            this.btn_pause.UseVisualStyleBackColor = true;
+            this.btn_pause.Click += new System.EventHandler(this.btn_pause_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(954, 362);
+            this.Controls.Add(this.btn_pause);
             this.Controls.Add(this.txtBox_currentTime);
             this.Controls.Add(this.trackBar_sound);
             this.Controls.Add(this.trackBar1);
@@ -479,6 +497,7 @@
         private System.Windows.Forms.TrackBar trackBar_sound;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox txtBox_currentTime;
+        private System.Windows.Forms.Button btn_pause;
 
     }
 }

@@ -99,6 +99,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="RenamePlaylist.resx">
       <DependentUpon>RenamePlaylist.cs</DependentUpon>
@@ -145,6 +146,24 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\play2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\next2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\pause2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\prev2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\stop2.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

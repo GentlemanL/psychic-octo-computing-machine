@@ -19,6 +19,7 @@ namespace wMediaPlayer
         public DataSet1 dataset;
         public TimeSpan? TotalDuration;
         private string path;
+        private bool isPaused = false;
         public bool newPlaylistCreated { get; set; }
         private PlayListManager manager;
         private Timer myTimer;
@@ -209,9 +210,24 @@ namespace wMediaPlayer
 
         private void btn_Play_Click(object sender, EventArgs e)
         {
-            xWMP.Ctlcontrols.play();
-            adjustTimeBar();
-            myTimer.Start();
+            if (isPaused)
+            {
+                isPaused = false;
+                xWMP.Ctlcontrols.play();
+                myTimer.Start();
+            }
+            else
+            {
+                xWMP.Ctlcontrols.play();
+                adjustTimeBar();
+                myTimer.Start();
+            }
+        }
+        private void btn_pause_Click(object sender, EventArgs e)
+        {
+            xWMP.Ctlcontrols.pause();
+            myTimer.Stop();
+            isPaused = true;
         }
 
         private void btn_next_Click(object sender, EventArgs e)
@@ -352,6 +368,7 @@ namespace wMediaPlayer
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
+            isPaused = false;
             ListViewItem item = listView1.SelectedItems[0];
             PlayListItem plItem = new PlayListItem(item.SubItems[0].Text,
                                                     item.SubItems[2].Text,
@@ -413,14 +430,21 @@ namespace wMediaPlayer
 
         private void tickAction()
         {
-            txtBox_currentTime.Text = trackTime.ToString();
-            trackBar1.Value = trackTime;
-            trackTime++;
-
-            if (trackBar1.Value == trackBar1.Maximum)
+            if (isPaused)
             {
-                xWMP.Ctlcontrols.next();
-                adjustTimeBar();
+
+            }
+            else
+            {
+                txtBox_currentTime.Text = trackTime.ToString();
+                trackBar1.Value = trackTime;
+                trackTime++;
+
+                if (trackBar1.Value == trackBar1.Maximum)
+                {
+                    xWMP.Ctlcontrols.next();
+                    adjustTimeBar();
+                }
             }
         }
 
@@ -458,5 +482,6 @@ namespace wMediaPlayer
             xWMP.Ctlcontrols.currentPosition = Convert.ToDouble(trackBar1.Value);
             trackTime = trackBar1.Value;
         }
+
     }
 }
