@@ -288,9 +288,6 @@ namespace wMediaPlayer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //odstranenie povodnych buttonov a stuff
-            //xWMP.uiMode = "None";
-
             manager = new PlayListManager(dataset);
             List<string> playlists = manager.LoadPlaylists();
 
@@ -300,9 +297,6 @@ namespace wMediaPlayer
                 ToolStripMenuItem tsmi = CreateOpenMenuItem(item);
                 openToolStripMenuItem.DropDownItems.Add(tsmi);
             }
-
-            //defaultPlaylist = xWMP.playlistCollection.newPlaylist("Default playlist");
-            //CurrentPlayList = defaultPlaylist.name;
         }
 
         private void LoadPlayList(string playlistName)
@@ -423,9 +417,9 @@ namespace wMediaPlayer
             trackBar1.Value = trackTime;
             trackTime++;
 
-
             if (trackBar1.Value == trackBar1.Maximum)
             {
+                xWMP.Ctlcontrols.next();
                 adjustTimeBar();
             }
         }
@@ -434,8 +428,6 @@ namespace wMediaPlayer
         {
             tickAction();
         }
-
-
 
         private void adjustTimeBar()
         {

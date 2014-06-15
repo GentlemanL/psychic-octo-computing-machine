@@ -378,7 +378,6 @@
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(425, 45);
             this.trackBar1.TabIndex = 7;
-            this.trackBar1.TickFrequency = 1000;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // trackBar_sound
