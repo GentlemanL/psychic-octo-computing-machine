@@ -189,41 +189,6 @@ namespace wMediaPlayer
                     MessageBox.Show(ex.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
-            //**
-            //if (DialogResult.OK == openFileDialog2.ShowDialog())
-            //{
-            //    IWMPPlaylist playlist = axWindowsMediaPlayer1.playlistCollection.getByName(CurrentPlayListName).Item(0);
-            //    List<PlayListItem> addedItems = new List<PlayListItem>();
-            //    foreach (string url in openFileDialog2.FileNames)
-            //    {
-            //        IWMPMedia media = axWindowsMediaPlayer1.newMedia(url);
-            //        playlist.appendItem(media);
-
-            //        PlayListItem item = PlaylistWorker.CreateItem(Path.GetFileName(url), url);
-            //        addedItems.Add(item);
-            //        TotalDuration += item.Duration;
-            //        string[] row = new string[3] {
-            //                Path.GetFileName(url),
-            //                item.ReturnDurationFormat(),
-            //                url
-            //            };
-            //        ListViewItem items = new ListViewItem(row);
-            //        listView1.Items.Add(items);
-
-            //        //listBoxURLS.Items.Add(item);
-            //    }
-            //    lblTotalDuration.Text = string.Format(@"{0}", TotalDuration.Value.ToString(TotalDuration.Value.TotalMinutes >= 60 ? @"h\:mm\:ss" : @"m\:ss"));
-
-            //    Dictionary<string, string> nameUrlPair = addedItems.ToDictionary(t => t.Url, t => t.ItemName);
-            //    worker.AddSongsToPlayList(nameUrlPair, CurrentPlayListName);
-
-            //    if (IsEmptyListView)
-            //    {
-            //        axWindowsMediaPlayer1.currentPlaylist = playlist;
-            //    }
-            //}
-            //***************************
         }
 
 
@@ -245,6 +210,7 @@ namespace wMediaPlayer
         private void btn_Play_Click(object sender, EventArgs e)
         {
             xWMP.Ctlcontrols.play();
+            adjustTimeBar();
             myTimer.Start();
         }
 
@@ -393,7 +359,6 @@ namespace wMediaPlayer
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
             ListViewItem item = listView1.SelectedItems[0];
-
             PlayListItem plItem = new PlayListItem(item.SubItems[0].Text,
                                                     item.SubItems[2].Text,
                                                     TimeSpan.Parse(item.SubItems[1].Text));
@@ -415,15 +380,15 @@ namespace wMediaPlayer
                         xWMP.Ctlcontrols.next();
                     }
                     xWMP.Ctlcontrols.play();
-                    //xWMP.Ctlcontrols.playItem(playlist.Item[i]);
                 }
+                adjustTimeBar();
+                myTimer.Start();
+
             }
             catch (Exception)
             {
                 MessageBox.Show("File not found! Delete song and add it from its new location!");
             }
-            adjustTimeBar();
-            myTimer.Start();
         }
 
         private void openURLToolStripMenuItem_Click(object sender, EventArgs e)
@@ -452,20 +417,30 @@ namespace wMediaPlayer
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            trackTime++;
+            txtBox_currentTime.Text = trackTime.ToString();
             trackBar1.Value = trackTime;
-            if (trackTime == trackBar1.Maximum)
+            trackTime++;
+
+            if (trackBar1.Value == trackBar1.Maximum)
             {
-                trackTime = 0;
                 adjustTimeBar();
             }
         }
+
+
 
         private void adjustTimeBar()
         {
             IWMPMedia media = xWMP.newMedia(xWMP.Ctlcontrols.currentItem.sourceURL);
             double time = media.duration;
+            trackTime = 0;
+            trackBar1.Value = 0;
             trackBar1.Maximum = Convert.ToInt32(time);
+        }
+
+        private void xWMP_PlayStateChange(object sender, _WMPOCXEvents_PlayStateChangeEvent e)
+        {
+
         }
     }
 }

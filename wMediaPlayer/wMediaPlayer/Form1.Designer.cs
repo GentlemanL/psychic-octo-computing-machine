@@ -34,6 +34,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playlistToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,10 +60,10 @@
             this.btn_prev = new System.Windows.Forms.Button();
             this.btn_next = new System.Windows.Forms.Button();
             this.btn_mute = new System.Windows.Forms.Button();
-            this.openURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.trackBar_sound = new System.Windows.Forms.TrackBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txtBox_currentTime = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -112,6 +113,14 @@
             this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.openFolderToolStripMenuItem.Text = "Open Folder";
             this.openFolderToolStripMenuItem.Click += new System.EventHandler(this.openFolderToolStripMenuItem_Click);
+            // 
+            // openURLToolStripMenuItem
+            // 
+            this.openURLToolStripMenuItem.Name = "openURLToolStripMenuItem";
+            this.openURLToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.openURLToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.openURLToolStripMenuItem.Text = "Open URL";
+            this.openURLToolStripMenuItem.Click += new System.EventHandler(this.openURLToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
@@ -244,6 +253,7 @@
             this.xWMP.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("xWMP.OcxState")));
             this.xWMP.Size = new System.Drawing.Size(507, 228);
             this.xWMP.TabIndex = 0;
+            this.xWMP.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.xWMP_PlayStateChange);
             // 
             // lbl_totalDuration
             // 
@@ -361,20 +371,12 @@
             this.btn_mute.UseVisualStyleBackColor = true;
             this.btn_mute.Click += new System.EventHandler(this.btn_mute_Click);
             // 
-            // openURLToolStripMenuItem
-            // 
-            this.openURLToolStripMenuItem.Name = "openURLToolStripMenuItem";
-            this.openURLToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
-            this.openURLToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.openURLToolStripMenuItem.Text = "Open URL";
-            this.openURLToolStripMenuItem.Click += new System.EventHandler(this.openURLToolStripMenuItem_Click);
-            // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(12, 261);
+            this.trackBar1.Location = new System.Drawing.Point(94, 261);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(507, 45);
+            this.trackBar1.Size = new System.Drawing.Size(425, 45);
             this.trackBar1.TabIndex = 7;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
@@ -393,11 +395,21 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // txtBox_currentTime
+            // 
+            this.txtBox_currentTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtBox_currentTime.Location = new System.Drawing.Point(12, 261);
+            this.txtBox_currentTime.Name = "txtBox_currentTime";
+            this.txtBox_currentTime.ReadOnly = true;
+            this.txtBox_currentTime.Size = new System.Drawing.Size(75, 20);
+            this.txtBox_currentTime.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(954, 362);
+            this.Controls.Add(this.txtBox_currentTime);
             this.Controls.Add(this.trackBar_sound);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.btn_mute);
@@ -464,6 +476,7 @@
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.TrackBar trackBar_sound;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox txtBox_currentTime;
 
     }
 }
